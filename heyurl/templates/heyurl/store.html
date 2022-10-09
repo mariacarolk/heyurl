@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% if not errors %}
+        New URL sucessfully created.<br>
+        Original URL: {{ original_url }} <br>
+        Short URL: {{ short_url }} <br>
+    {% else %}
+        {{ errors }}
+    {% endif %}
+</head>
+<body>
+
+</body>
+</html>
