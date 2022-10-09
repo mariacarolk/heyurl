@@ -64,6 +64,9 @@ def short_url(request, short_url):
     # FIXME: Do the logging to the db of the click with the user agent and browser
 
     try:
+
+        print(request.user_agent)
+
         object = Url.objects.get(short_url=short_url)
 
         print(object.original_url)
@@ -77,11 +80,11 @@ def short_url(request, short_url):
         # platform = models.CharField(max_length=255)
         # created_at = models.DateTimeField('date created')
         # updated_at = models.DateTimeField('date updated')
-        click = Click(url = object,
-                      browser = 'chrome,',
-                      platform = 'teste',
-                      created_at = object.created_at,
-                      updated_at = object.updated_at)
+        click = Click(object,
+                      'chrome,'
+                      'teste',
+                      object.created_at,
+                      object.updated_at)
         print('INSTANCIOU', click)
         click.save()
 
