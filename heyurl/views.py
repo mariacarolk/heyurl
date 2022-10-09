@@ -77,11 +77,11 @@ def short_url(request, short_url):
         # platform = models.CharField(max_length=255)
         # created_at = models.DateTimeField('date created')
         # updated_at = models.DateTimeField('date updated')
-        click = Click(object,
-                      'chrome,'
-                      'teste',
-                      object.created_at,
-                      object.updated_at)
+        click = Click(url = object,
+                      browser = 'chrome,',
+                      platform = 'teste',
+                      created_at = object.created_at,
+                      updated_at = object.updated_at)
         print('INSTANCIOU', click)
         click.save()
 
