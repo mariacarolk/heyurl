@@ -3,21 +3,13 @@ from django.utils import timezone
 from django.db import models
 # CACAU Import the function used to create random codes
 from .utils import create_shortened_url
-from django.core.validators import URLValidator
-from django.core.exceptions import ValidationError
-from django.urls import resolve, Resolver404
-from django.core.validators import URLValidator
 
 class Url(models.Model): #CACAU MODIFIQUEI OS CAMPOS
     short_url = models.CharField(max_length=255, unique=True)
-    original_url = models.URLField(unique=True)
+    original_url = models.URLField(unique=True) #alterado tipo
     clicks = models.IntegerField(default=0)
     created_at = models.DateTimeField('date created')
     updated_at = models.DateTimeField('date updated')
-
-    # def valid_url(self):
-    #     validate = URLValidator()
-    #     validate(self.original_url)
 
     #CACAU
     def save(self, *args, **kwargs):

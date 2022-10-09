@@ -2,7 +2,7 @@ from django.shortcuts import render
 #CACAU 7 importei HttpResponseNotFound
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect, Http404
 from .models import Url
-from .models import Click
+
 #cacau
 from .forms import OriginalUrlForm
 
@@ -66,24 +66,20 @@ def short_url(request, short_url):
     try:
         object = Url.objects.get(short_url=short_url)
 
-        print(object.original_url)
         object.clicks += 1
 
         object.save()
 
-        print('object', object.original_url, object.short_url, object.created_at, object.updated_at)
-        # url = models.ForeignKey(Url, on_delete=models.CASCADE)
-        # browser = models.CharField(max_length=255)
-        # platform = models.CharField(max_length=255)
-        # created_at = models.DateTimeField('date created')
-        # updated_at = models.DateTimeField('date updated')
-        click = Click(url = object,
-                      browser = 'chrome,',
-                      platform = 'teste',
-                      created_at = object.created_at,
-                      updated_at = object.updated_at)
+        print('USER AGENT', request.user_agent)
+
+        click = object.click_set.create(
+            browser = 'CHROME',
+            platform = 'ios',
+            created_at = object.created_at,
+            updated_at = object.updated_at
+        )
+
         print('INSTANCIOU', click)
-        click.save()
 
         return HttpResponseRedirect(object.original_url)
 
