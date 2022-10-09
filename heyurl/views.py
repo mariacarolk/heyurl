@@ -77,11 +77,12 @@ def short_url(request, short_url):
         # platform = models.CharField(max_length=255)
         # created_at = models.DateTimeField('date created')
         # updated_at = models.DateTimeField('date updated')
-        url_insert = Url.objects.get(short_url=short_url)
-
-        click = Click()
-        click.browser = 'chrome'
-        print('instanciou', click)
+        click = Click(object,
+                      'chrome,'
+                      'teste',
+                      object.created_at,
+                      object.updated_at)
+        print('INSTANCIOU', click)
         click.save()
 
         return HttpResponseRedirect(object.original_url)

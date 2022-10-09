@@ -10,7 +10,7 @@ from django.core.validators import URLValidator
 
 class Url(models.Model): #CACAU MODIFIQUEI OS CAMPOS
     short_url = models.CharField(max_length=255, unique=True)
-    original_url = models.URLField(primary_key=True, unique=True)
+    original_url = models.URLField(unique=True)
     clicks = models.IntegerField(default=0)
     created_at = models.DateTimeField('date created')
     updated_at = models.DateTimeField('date updated')
@@ -38,6 +38,7 @@ class Click(models.Model):
     platform = models.CharField(max_length=255)
     created_at = models.DateTimeField('date created')
     updated_at = models.DateTimeField('date updated')
+
 
 
 
