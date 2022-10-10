@@ -10,10 +10,10 @@ class IndexTests(TestCase):
         # response = self.client.get(reverse('index'))
 
     def test_submitting_new_url_failure(self):
-        """
+       """
         When submitting an invalid URL, an error is returned to the user
         """
-        # response = self.client.get(reverse('store'))
+        #response = self.client.get(reverse('store'))
 
     def test_submitting_new_url_success(self):
         """
@@ -32,4 +32,4 @@ class IndexTests(TestCase):
         If short URL exists, stats logged and redirected to original URL
         """
         # response = self.client.get(reverse('u/dne'))
-        
+

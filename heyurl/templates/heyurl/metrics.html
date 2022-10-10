@@ -1,10 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    Short URL: {{ short_url }}
-</head>
-<body>
+    <title>HeyURL!</title>
 
-</body>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'heyurl/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'heyurl/style.css' %}">
+  </head>
+    <!-- <b><u>Short URL {{ short_url }} statistics for this month: </u></b><br><br> -->
+
+        <div class="card mb-sm-4">
+            <div class="card-header">
+              Short URL {{ short_url }} statistics for this month:
+            </div>
+            <div class="card-body">
+              {% if clicks %}
+                {% load humanize %}
+                <table class="table">
+                  <thead class="thead-dark">
+                    <tr>
+                      <th scope="col">Day of the month</th>
+                      <th scope="col">Click Amount</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for data in clicks %}
+                      <tr>
+                        <td>{{ data.updated_at__day }} </td>
+                        <td>{{ data.total }}</td>
+                      </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              {% else %}
+              <div class="alert alert-light" role="alert">
+                There are no clicks in this short URL yet!
+              </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+
+        <div class="card mb-sm-4">
+            <div class="card-header">
+              BROWSERS:
+            </div>
+            <div class="card-body">
+              {% if browsers %}
+                {% load humanize %}
+                <table class="table">
+                  <thead class="thead-dark">
+                    <tr>
+                      <th scope="col">Browser</th>
+                      <th scope="col">Amount</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for data in browsers %}
+                      <tr>
+                        <td>{{ data.browser }} </td>
+                        <td>{{ data.total }}</td>
+                      </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+
+        <div class="card mb-sm-4">
+            <div class="card-header">
+              PLATFORMS:
+            </div>
+            <div class="card-body">
+              {% if platforms %}
+                {% load humanize %}
+                <table class="table">
+                  <thead class="thead-dark">
+                    <tr>
+                      <th scope="col">Platform</th>
+                      <th scope="col">Amount</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for data in platforms %}
+                      <tr>
+                        <td>{{ data.platform }} </td>
+                        <td>{{ data.total }}</td>
+                      </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+</head>
 </html>

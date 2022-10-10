@@ -24,15 +24,15 @@ SECRET_KEY = '=hmm4&8f4p5uc)y0rrt78e)v5pk+y%v4k%w4@xc5%f*rommdaa'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+#DEBUG = False
 
+#ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
 INSTALLED_APPS = [
     'heyurl.apps.HeyurlConfig',
-    'django_user_agents',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_user_agents' #cacau
 ]
 
 MIDDLEWARE = [
@@ -50,12 +51,12 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django_user_agents.middleware.UserAgentMiddleware',
+    'django_user_agents.middleware.UserAgentMiddleware', #cacau
 ]
 
 # Name of cache backend to cache user agents. If it not specified default
 # cache alias will be used. Set to `None` to disable caching.
-USER_AGENTS_CACHE = 'default'
+USER_AGENTS_CACHE = 'default' #cacau
 
 
 ROOT_URLCONF = 'urls.urls'

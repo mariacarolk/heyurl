@@ -1,28 +1,36 @@
 from django.conf import settings
 from random import choice
 from string import ascii_letters, digits
+import requests
 
-# Try to get the value from the settings module
-SIZE = getattr(settings, "MAXIMUM_URL_CHARS", 7)
-
-AVAIABLE_CHARS = ascii_letters + digits
-
-def create_random_code(chars=AVAIABLE_CHARS):
+def create_random_code(avaiable_chars):
     """
     Creates a random string with the predetermined size
     """
-    return "".join(
-        [choice(chars) for _ in range(SIZE)]
-    )
+    size = 5
+    return "".join([choice(avaiable_chars) for _ in range(size)])
 
-def create_shortened_url(model_instance):
-    random_code = create_random_code()
-    # Gets the model class
+def create_short_url(Url):
+    avaiable_chars = ascii_letters + digits
+    random_code = create_random_code(avaiable_chars)
 
-    model_class = model_instance.__class__
+    #gets the model class
+    url = Url.__class__
 
-    if model_class.objects.filter(short_url=random_code).exists():
+    if url.objects.filter(short_url=random_code).exists():
         # Run the function again
-        return create_shortened_url(model_instance)
+        return create_short_url(Url)
 
     return random_code
+
+
+def valid_url(url):
+    try:
+        response = requests.head(url)
+
+        if response.status_code == 200:
+            return True
+        else:
+            return False
+    except requests.ConnectionError as e:
+        return False

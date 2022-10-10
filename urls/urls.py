@@ -20,3 +20,5 @@ urlpatterns = [
     #retirei o /u daqui
     path('<short_url>/', include('heyurl.routes.short_url')),
 ]
+
+handler404 = "heyurl.views.handler404"

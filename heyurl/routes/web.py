@@ -6,3 +6,5 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('store', views.store, name='store'),
 ]
+
+handler404 = "heyurl.views.handler404"
